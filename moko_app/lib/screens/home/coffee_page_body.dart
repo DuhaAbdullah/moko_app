@@ -150,10 +150,7 @@ class _CoffeePageBodyState extends State<CoffeePageBody> {
                                 color: Colors.white38,
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: NetworkImage(AppConstants.baseUrl +
-                                      AppConstants.uploadUrl +
-                                      recommendedProduct
-                                          .recommendedProductList[index].img!),
+                                  image: NetworkImage(AppConstants.baseUrl + AppConstants.uploadUrl + recommendedProduct.recommendedProductList[index].img!),
                                 ),
                               ),
                             ),

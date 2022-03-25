@@ -20,8 +20,8 @@ class PopularCoffeeDetail extends StatelessWidget {
     //this to find a controller
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
-    print("page is id "+ pageId.toString());
-    print("product name is: "+ product.name.toString());
+    //print("page is id "+ pageId.toString());
+    //print("product name is: "+ product.name.toString());
     return Scaffold(
         body: Stack(
           children: [
@@ -36,7 +36,7 @@ class PopularCoffeeDetail extends StatelessWidget {
                   image: DecorationImage(
                     fit: BoxFit.cover,
                     image: NetworkImage(AppConstants.baseUrl +
-                        AppConstants.popularProductUrl +
+                        AppConstants.popularProductUrl +'/uploads/'+
                         product.img!),
                   ),
                 ),
