@@ -261,7 +261,7 @@ class _CoffeePageBodyState extends State<CoffeePageBody> {
         children: [
           GestureDetector(
             onTap: () {
-              Get.toNamed(RouteHelper.getPopularCoffee(1));
+              Get.toNamed(RouteHelper.getPopularCoffee(index));
             },
             child: Container(
               height: Dimensions.pageViewContainer,
@@ -275,12 +275,12 @@ class _CoffeePageBodyState extends State<CoffeePageBody> {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(AppConstants.baseUrl +
-                      AppConstants.uploadUrl +
+                      '/uploads/' +
                       popularProduct.img!),
+                ),
                 ),
               ),
             ),
-          ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(

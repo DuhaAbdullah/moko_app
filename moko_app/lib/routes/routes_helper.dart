@@ -8,10 +8,11 @@ class RouteHelper {
   static const String initial = '/';
   static const String popularCoffee = '/popular_coffee';
   static const String recommendedCoffee = '/recommended_coffee';
+  //if u want to add a variable in user id use a dollar sign like page Id here
   static String getPopularCoffee(int pageId) =>
-      '$popularCoffee? pageId = $pageId';
-  static String getInitial() => '$initial';
-  static String getRecommendedCoffee() => '$recommendedCoffee';
+      '$popularCoffee?pageId=$pageId';
+  static String getInitial() => initial;
+  static String getRecommendedCoffee() => recommendedCoffee;
   static List<GetPage> routes = [
     GetPage(name: '/', page: () => const MainCoffeePage()),
     GetPage(

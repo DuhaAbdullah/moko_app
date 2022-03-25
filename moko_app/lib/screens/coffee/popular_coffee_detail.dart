@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:moko_app/controller/popular_product_controller.dart';
 import 'package:moko_app/screens/home/main_coffee_page.dart';
+import 'package:moko_app/utils/app_constants.dart';
 import 'package:moko_app/utils/dimensions.dart';
 import 'package:moko_app/widgets/app_column.dart';
 import 'package:moko_app/widgets/app_icon.dart';
@@ -17,8 +18,10 @@ class PopularCoffeeDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //this to find a controller
-    var product =   Get.find<PopularProductController>().popularProductList[pageId];
-    print("page is id ");
+    var product =
+        Get.find<PopularProductController>().popularProductList[pageId];
+    print("page is id "+ pageId.toString());
+    print("product name is: "+ product.name.toString());
     return Scaffold(
         body: Stack(
           children: [
@@ -29,10 +32,12 @@ class PopularCoffeeDetail extends StatelessWidget {
               child: Container(
                 width: double.maxFinite,
                 height: Dimensions.popularCoffeeImgSize,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: AssetImage('assets/images/coffee_img1.jpg'),
+                    image: NetworkImage(AppConstants.baseUrl +
+                        AppConstants.popularProductUrl +
+                        product.img!),
                   ),
                 ),
               ),
@@ -75,7 +80,7 @@ class PopularCoffeeDetail extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const AppColumn(text: 'Cappuccino'),
+                      AppColumn(text: product.name!),
                       SizedBox(
                         height: Dimensions.height20,
                       ),
@@ -83,11 +88,10 @@ class PopularCoffeeDetail extends StatelessWidget {
                       SizedBox(
                         height: Dimensions.height20,
                       ),
-                      const Expanded(
+                      Expanded(
                         child: SingleChildScrollView(
-                          child: ExpandableTextWidget(
-                              text:
-                                  'Coffee is a plant (Coffea) and the name of the drink that is made from this plant. The coffee plant is a bush or tree that can grow up to ten meters he first branded coffee to be sold commercially to the public was Nescafé in 1879. The drink is made from the seeds of the coffee plant, called coffee beans. Coffee is usually served hot, and is a popular drink in many countries. Coffee contains a chemical called caffeine, a mild drug that keeps people awak drying the beans and then roasting. The beans are dried a short time after they are picked. This preserves them and makes them ready to be packed or roasted. Before the beans are made into a drink, they must be roasted or groud into tiny pieces in a coffee mil When the ground coffee is pla high, but is usually cut shorter'),
+                          child: 
+                              ExpandableTextWidget(text: product.description!),
                         ),
                       ),
                     ],
