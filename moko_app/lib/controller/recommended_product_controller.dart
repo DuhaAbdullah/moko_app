@@ -1,9 +1,7 @@
-
 import 'package:get/get.dart';
 import 'package:moko_app/model/product_model.dart';
 
 import '../data/repository/recommended_product_repo.dart';
-
 
 class RecommendedProductController extends GetxController {
   final RecommendedProductRepo recommendedProductRepo;
@@ -16,9 +14,12 @@ class RecommendedProductController extends GetxController {
 
   bool _isloaded = false;
   bool get isLoaded => _isloaded;
+  int _quantity = 0;
+  int get quantity => _quantity;
 
   Future<void> getRecommendedProductList() async {
-    Response response = await recommendedProductRepo.getRecommendedProductList();
+    Response response =
+        await recommendedProductRepo.getRecommendedProductList();
 
     if (response.statusCode == 200) {
       print('got products recommended');
@@ -30,6 +31,15 @@ class RecommendedProductController extends GetxController {
       update();
     } else {
       print('Did not get product recommended');
+    }
+  }
+
+  void setQuantity(bool isIncreament) {
+    if (isIncreament) {
+      print("increment "+_quantity.toString());
+      _quantity = _quantity + 1;
+    } else {
+      _quantity = _quantity - 1;
     }
   }
 }
