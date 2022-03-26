@@ -6,7 +6,7 @@ import 'package:moko_app/widgets/app_icon.dart';
 import 'package:moko_app/widgets/big_text.dart';
 import 'package:moko_app/widgets/expandable_text_widget.dart';
 import 'package:get/get.dart';
-
+import 'package:moko_app/utils/app_constants.dart';
 import '../../controller/recommended_product_controller.dart';
 
 class RecommendedCoffeeDetail extends StatelessWidget {
@@ -62,7 +62,7 @@ class RecommendedCoffeeDetail extends StatelessWidget {
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
               background: Image.network(
-                  AppConstants.BASE_URL+ '/uploads' + product.img! ,
+                  'http://mvs.bslmeiyu.com/uploads/' + product.img!,
                   fit: BoxFit.cover,
                   width: double.maxFinite,
                   ),
