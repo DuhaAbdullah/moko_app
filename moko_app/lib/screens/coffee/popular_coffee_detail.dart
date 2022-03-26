@@ -35,8 +35,7 @@ class PopularCoffeeDetail extends StatelessWidget {
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     fit: BoxFit.cover,
-                    image: NetworkImage(AppConstants.baseUrl +
-                        AppConstants.popularProductUrl +'/uploads/'+
+                    image: NetworkImage(AppConstants.baseUrl + AppConstants.uploadUrl+
                         product.img!),
                   ),
                 ),
@@ -147,7 +146,7 @@ class PopularCoffeeDetail extends StatelessWidget {
                     left: Dimensions.width20,
                     right: Dimensions.width20),
                 child: BigText(
-                  text: '\$10 | Add to cart',
+                  text: "\$ ${product.price!} | Add to cart",
                   color: Colors.white,
                 ),
                 decoration: BoxDecoration(

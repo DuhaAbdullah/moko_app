@@ -12,7 +12,7 @@ class RouteHelper {
   static String getPopularCoffee(int pageId) =>
       '$popularCoffee?pageId=$pageId';
   static String getInitial() => initial;
-  static String getRecommendedCoffee() => recommendedCoffee;
+  static String getRecommendedCoffee(int index) => recommendedCoffee;
   static List<GetPage> routes = [
     GetPage(name: '/', page: () => const MainCoffeePage()),
     GetPage(
@@ -26,7 +26,8 @@ class RouteHelper {
     GetPage(
       name: recommendedCoffee,
       page: () {
-        return const RecommendedCoffeeDetail();
+        var pageId = Get.parameters['pageId'];
+        return RecommendedCoffeeDetail(pageId: int.parse(pageId!));
       },
       transition: Transition.fadeIn,
     ),

@@ -7,11 +7,20 @@ import 'package:moko_app/widgets/big_text.dart';
 import 'package:moko_app/widgets/expandable_text_widget.dart';
 import 'package:get/get.dart';
 
+import '../../controller/recommended_product_controller.dart';
+
 class RecommendedCoffeeDetail extends StatelessWidget {
-  const RecommendedCoffeeDetail({Key? key}) : super(key: key);
+  const RecommendedCoffeeDetail({
+    Key? key,
+    required this.pageId,
+  }) : super(key: key);
+  final int pageId;
 
   @override
   Widget build(BuildContext context) {
+    //this to find a controller
+    var product =
+        Get.find<RecommendedProductController>().recommendedProductList[pageId];
     return Scaffold(
       backgroundColor: Colors.white,
       body: CustomScrollView(
@@ -21,7 +30,7 @@ class RecommendedCoffeeDetail extends StatelessWidget {
             toolbarHeight: 70,
             title: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children:  [
+              children: [
                 GestureDetector(
                   onTap: (() {
                     Get.toNamed(RouteHelper.getInitial());
@@ -52,11 +61,11 @@ class RecommendedCoffeeDetail extends StatelessWidget {
             backgroundColor: AppColors.yellowColor,
             expandedHeight: 300,
             flexibleSpace: FlexibleSpaceBar(
-              background: Image.asset(
-                'assets/images/coffee.jpg',
-                width: double.maxFinite,
-                fit: BoxFit.cover,
-              ),
+              background: Image.network(
+                  AppConstants.BASE_URL+ '/uploads' + product.img! ,
+                  fit: BoxFit.cover,
+                  width: double.maxFinite,
+                  ),
             ),
           ),
           SliverToBoxAdapter(
@@ -94,7 +103,7 @@ class RecommendedCoffeeDetail extends StatelessWidget {
                   icon: Icons.remove,
                 ),
                 BigText(
-                  text: "\$12.88" + "X" + "0",
+                  text: "\$12.88" "X" + "0",
                   color: AppColors.mainBlockColor,
                   size: Dimensions.font20,
                 ),
@@ -119,12 +128,15 @@ class RecommendedCoffeeDetail extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(Dimensions.radius20),
-                  ),
-                  child: const Icon(Icons.favorite, color: AppColors.mainColor, size: 28,)
-                ),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(Dimensions.radius20),
+                    ),
+                    child: const Icon(
+                      Icons.favorite,
+                      color: AppColors.mainColor,
+                      size: 28,
+                    )),
                 Container(
                   padding: EdgeInsets.only(
                       top: Dimensions.height10,
@@ -148,3 +160,5 @@ class RecommendedCoffeeDetail extends StatelessWidget {
     );
   }
 }
+
+class AppConstants {}

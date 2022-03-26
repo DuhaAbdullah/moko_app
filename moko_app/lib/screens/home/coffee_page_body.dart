@@ -119,6 +119,7 @@ class _CoffeePageBodyState extends State<CoffeePageBody> {
             ],
           ),
         ),
+        //recommendedd coffee image
         //list of food and images
         GetBuilder<RecommendedProductController>(builder: (recommendedProduct) {
           return recommendedProduct.isLoaded
@@ -130,7 +131,7 @@ class _CoffeePageBodyState extends State<CoffeePageBody> {
                     //var popularProduct;
                     return GestureDetector(
                       onTap: () {
-                        Get.toNamed(RouteHelper.getRecommendedCoffee());
+                        Get.toNamed(RouteHelper.getRecommendedCoffee(index));
                       },
                       child: Container(
                         margin: EdgeInsets.only(
@@ -272,7 +273,7 @@ class _CoffeePageBodyState extends State<CoffeePageBody> {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(AppConstants.baseUrl +
-                      '/uploads/' +
+                      AppConstants.uploadUrl +
                       popularProduct.img!),
                 ),
                 ),
