@@ -7,7 +7,6 @@ import 'package:moko_app/utils/dimensions.dart';
 import 'package:moko_app/widgets/app_column.dart';
 import 'package:moko_app/widgets/app_icon.dart';
 import 'package:moko_app/widgets/expandable_text_widget.dart';
-import 'package:moko_app/controller/recommended_product_controller.dart' as dp;
 import '../../utils/color.dart';
 import '../../widgets/big_text.dart';
 
@@ -21,6 +20,7 @@ class PopularCoffeeDetail extends StatelessWidget {
     //this to find a controller
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
+    Get.find<PopularProductController>().initProduct();
     //print("page is id "+ pageId.toString());
     //print("product name is: "+ product.name.toString());
     return Scaffold(
@@ -125,9 +125,14 @@ class PopularCoffeeDetail extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        const Icon(
-                          Icons.remove,
-                          color: AppColors.signColor,
+                        GestureDetector(
+                          onTap: () {
+                            popularProduct.setQuantity(false);
+                          },
+                          child: const Icon(
+                            Icons.remove,
+                            color: AppColors.signColor,
+                          ),
                         ),
                         SizedBox(
                           width: Dimensions.width10 / 2,
@@ -138,7 +143,7 @@ class PopularCoffeeDetail extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () {
-                            popularProduct.setQuanitiy(true);
+                            popularProduct.setQuantity(true);
                           },
                           child: const Icon(
                             Icons.add,
