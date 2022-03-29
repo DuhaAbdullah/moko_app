@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:moko_app/controller/cart_controller.dart';
 import 'package:moko_app/controller/popular_product_controller.dart';
 import 'package:moko_app/screens/home/main_coffee_page.dart';
 import 'package:moko_app/utils/app_constants.dart';
@@ -20,7 +21,9 @@ class PopularCoffeeDetail extends StatelessWidget {
     //this to find a controller
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
-    Get.find<PopularProductController>().initProduct();
+    Get.find<PopularProductController>()
+        .initProduct(Get.find<CartController>());
+
     //print("page is id "+ pageId.toString());
     //print("product name is: "+ product.name.toString());
     return Scaffold(
@@ -159,9 +162,14 @@ class PopularCoffeeDetail extends StatelessWidget {
                         bottom: Dimensions.height10,
                         left: Dimensions.width20,
                         right: Dimensions.width20),
-                    child: BigText(
-                      text: "\$ ${product.price!} | Add to cart",
-                      color: Colors.white,
+                    child: GestureDetector(
+                      onTap: () {
+                        popularProduct.addItems(product);
+                      },
+                      child: BigText(
+                        text: "\$ ${product.price!} | Add to cart",
+                        color: Colors.white,
+                      ),
                     ),
                     decoration: BoxDecoration(
                       color: AppColors.mainColor,

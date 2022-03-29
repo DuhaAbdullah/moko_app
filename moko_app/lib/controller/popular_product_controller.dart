@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:moko_app/controller/cart_controller.dart';
 import 'package:moko_app/model/product_model.dart';
 import 'package:moko_app/utils/color.dart';
 import '../data/repository/populat_product_repo.dart';
@@ -20,6 +21,7 @@ class PopularProductController extends GetxController {
   int get quantity => _quantity;
   int _inCartItems = 0;
   int get inCartItems => _inCartItems + _quantity;
+  late CartController _cart;
 
   Future<void> getPopularProductList() async {
     Response response = await popularProductRepo.getPopularProductList();
@@ -63,9 +65,14 @@ class PopularProductController extends GetxController {
     }
   }
 
-  void initProduct() {
+  void initProduct(CartController cart) {
     _quantity = 0;
     _inCartItems = 0;
+    _cart = cart;
     // get from storage _inCartItems
+  }
+
+  void addItems(ProductsModel product) {
+    _cart.addItems(product, _quantity);
   }
 }
