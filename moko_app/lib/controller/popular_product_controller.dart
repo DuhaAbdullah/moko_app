@@ -52,11 +52,11 @@ class PopularProductController extends GetxController {
 
   // local veriable have a highr priority
   checkQuantity(int quantity) {
-    if (quantity < 0) {
+    if ((_inCartItems + quantity) < 0) {
       Get.snackbar("Item count", "you can reduce more!",
           backgroundColor: AppColors.mainColor, colorText: Colors.white);
       return 0;
-    } else if (quantity > 20) {
+    } else if ((_inCartItems + quantity) > 20) {
       Get.snackbar("Item count", "you can add more!",
           backgroundColor: AppColors.mainColor, colorText: Colors.white);
       return 20;
@@ -65,19 +65,30 @@ class PopularProductController extends GetxController {
     }
   }
 
-  void initProduct(CartController cart) {
+  void initProduct(ProductsModel product, CartController cart) {
     _quantity = 0;
     _inCartItems = 0;
     _cart = cart;
+    var exist = false;
+    exist = _cart.exsitsInCart(product);
     // get from storage _inCartItems
+    print("exists or not:" + exist.toString());
+    if (exist) {
+      _inCartItems = _cart.getQuantity(product);
+    }
+    print("the quantity in the cart is:" + inCartItems.toString());
   }
 
   void addItems(ProductsModel product) {
     if (quantity > 0) {
       _cart.addItems(product, _quantity);
+      _quantity = 0;
+      _inCartItems = _cart.getQuantity(product);
       _cart.items.forEach((key, value) {
-        print("this id is:"+value.id.toString()
-        + "the quantity is:"+value.quantity.toString());
+        print("this id is:" +
+            value.id.toString() +
+            "the quantity is:" +
+            value.quantity.toString());
       });
     } else {
       Get.snackbar("Item count", "you should add an item!",

@@ -22,7 +22,7 @@ class PopularCoffeeDetail extends StatelessWidget {
     var product =
         Get.find<PopularProductController>().popularProductList[pageId];
     Get.find<PopularProductController>()
-        .initProduct(Get.find<CartController>());
+        .initProduct(product,Get.find<CartController>());
 
     //print("page is id "+ pageId.toString());
     //print("product name is: "+ product.name.toString());
@@ -140,7 +140,7 @@ class PopularCoffeeDetail extends StatelessWidget {
                         SizedBox(
                           width: Dimensions.width10 / 2,
                         ),
-                        BigText(text: popularProduct.quantity.toString()),
+                        BigText(text: popularProduct.inCartItems.toString()),
                         SizedBox(
                           width: Dimensions.width10 / 2,
                         ),

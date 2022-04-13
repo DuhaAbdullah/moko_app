@@ -9,7 +9,7 @@ class CartController extends GetxController {
   CartController({required this.cartRepo});
   final Map<int, CartModel> _items = {};
 
-   Map<int, CartModel> get items=>_items;
+  Map<int, CartModel> get items => _items;
 
   void addItems(ProductsModel product, int quantity) {
     // ignore: avoid_print
@@ -46,5 +46,24 @@ class CartController extends GetxController {
             time: DateTime.now().toString());
       });
     }
+  }
+
+  bool exsitsInCart(ProductsModel product) {
+    if (_items.containsKey(product.id)) {
+      return true;
+    }
+    return false;
+  }
+
+  int getQuantity(ProductsModel product) {
+    var quantity = 0;
+    if (_items.containsKey(product.id)) {
+      _items.forEach((key, value) {
+        if (key == product.id) {
+          quantity = value.quantity!;
+        }
+      });
+    }
+    return quantity;
   }
 }
