@@ -51,7 +51,7 @@ class PopularProductController extends GetxController {
   }
 
   // local veriable have a highr priority
-  checkQuantity(int quantity) {
+  int checkQuantity(int quantity) {
     if ((_inCartItems + quantity) < 0) {
       Get.snackbar("Item count", "you can reduce more!",
           backgroundColor: AppColors.mainColor, colorText: Colors.white);
